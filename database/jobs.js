@@ -26,4 +26,4 @@ const jobsSchema = new mongoose.Schema({
 
 })
 
-export const jobModel = mongoose.model("Users", jobsSchema, 'users')
+export const jobModel = mongoose.model("users", jobsSchema, 'users')
