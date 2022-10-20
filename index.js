@@ -8,11 +8,12 @@ app.use(express.json())
 app.get("/",(req,res)=>{
 res.send("server started")
 })
-await connectdatabase()
+
 
 app.use(authRouter)
-const port = process.env.PORT||8080
+const port = process.env.PORT ||8080
 
-app.listen(port,(req,res)=>{
+app.listen(port,async(req,res)=>{
+    await connectdatabase()
 console.log(` listening on http://localhost:${port}`)
 })
