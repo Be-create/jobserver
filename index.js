@@ -14,11 +14,9 @@ app.use(authRouter)
 const port = process.env.PORT ||8080
 
 app.listen(port,async(req,res)=>{
-    try {
+    
   await  connectdatabase()
      
         console.log(` listening on http://localhost:${port}`)
-    } catch (error) {
-        console.log(error)
-    }
+   
 })
