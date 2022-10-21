@@ -44,12 +44,12 @@ else{
 
 export const getalljobs=async(req,res)=>{
 try {
-        let jobs = await jobModel.find({
+        const jobs = await jobModel.find({
             category: "Job"
         })
-        console.log(jobs)
+        
 
-        //jobs = jobs.toJSON()
+       
     
         return res.status(200).send({
             status : "success" ,
