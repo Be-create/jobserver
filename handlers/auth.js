@@ -26,7 +26,7 @@ console.log(user)
     return res.status(200).send({
         status : "success" ,
     massage : "user created successfully",
-    data : user
+    data : user,
     })
 }
 } catch (error) {
@@ -37,13 +37,13 @@ console.log(user)
 }
 
 }
-
+//login
 export async function login(req, res) {
 
     try {
 
         const {email, password} = req.body;
-
+//console.log(req)
         // if the user with that email exists
         const user = await userModel.findOne({
             email
@@ -73,9 +73,8 @@ export async function login(req, res) {
                 return res.send({
                     status: 'success',
                     message: 'You are now logged in',
-                    data: {
-                        user
-                    }
+                    data: user,
+                    token:token
                 })
             }
 
@@ -95,3 +94,4 @@ export async function login(req, res) {
     }
 }
 
+//check if user

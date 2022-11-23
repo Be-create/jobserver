@@ -2,17 +2,10 @@ import { jobModel } from "../database/jobs.js";
 
 export const postjob = async(req,res)=>{
 try {
-    const {email,password,companyname,position,contact,location} = req.body
+    const {category,companyname,role,location} = req.body
 
-if(!email || !password ){
-    res.status(400).send({
-        status: "error",
-        message: "Please login first"
-    })
-    
-}
-else{
-    if(!companyname||!position||!contact||!location){
+
+    if(category===""||companyname===""||role===""||location===""){
         res.status(400).send({
             status : "error",
             message : "Invalid input"
@@ -20,7 +13,7 @@ else{
     }
     else{
         let job = await jobModel.create({
-            companyname,position,contact,location
+            category,companyname,role,location
         })
     
         job = job.toJSON()
@@ -31,7 +24,7 @@ else{
         data : job
         })
     }
-    }
+    
 }
  catch (error) {
     return res.status(500).send({
@@ -43,10 +36,11 @@ else{
 }
 
 export const getalljobs=async(req,res)=>{
+    //console.log(req.headers)
 try {
-        const jobs = await jobModel.find({
-            category: "Job"
-        })
+        const jobs = await jobModel.find(
+            {},{"category":1,"companyname":1,"location":1,"role":1}
+        )
         
 
        
