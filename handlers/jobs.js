@@ -2,7 +2,7 @@ import { jobModel } from "../database/jobs.js";
 
 export const postjob = async(req,res)=>{
 try {
-    const {category,companyname,role,location} = req.body
+    const {category,salary,companyname,role,location,time} = req.body
 
 
     if(category===""||salary===""||companyname===""||role===""||location===""||time===""){
@@ -20,7 +20,7 @@ try {
     console.log(job)
         return res.status(200).send({
             status : "success" ,
-        massage : "user created successfully",
+        massage : "job posted successfully",
         data : job
         })
     }
