@@ -5,7 +5,7 @@ try {
     const {category,companyname,role,location} = req.body
 
 
-    if(category===""||companyname===""||role===""||location===""){
+    if(category===""||salary===""||companyname===""||role===""||location===""||time===""){
         res.status(400).send({
             status : "error",
             message : "Invalid input"
@@ -13,7 +13,7 @@ try {
     }
     else{
         let job = await jobModel.create({
-            category,companyname,role,location
+            category,salary,time,companyname,role,location
         })
     
         job = job.toJSON()
