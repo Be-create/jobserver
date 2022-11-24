@@ -5,6 +5,10 @@ const jobsSchema = new mongoose.Schema({
     type : String,
     default : "Job"
     },
+    salary:{
+        type : Number,
+        required:true,
+    },
     companyname : {
         type : String,
         required:true,
@@ -21,8 +25,14 @@ const jobsSchema = new mongoose.Schema({
         type : String,
         required: true
     },
+ time: {
+    type: Date,
+    required : true
+ }
+
+}
 
 
-})
+)
 
 export const jobModel = mongoose.model("users", jobsSchema, 'jobs')
