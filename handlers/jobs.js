@@ -39,7 +39,7 @@ export const getalljobs=async(req,res)=>{
     //console.log(req.headers)
 try {
         const jobs = await jobModel.find(
-            {},{"category":1,"companyname":1,"location":1,"role":1}
+            {},{"category":1,"companyname":1,"location":1,"role":1,"salary":1,"time":1}
         )
         
 
