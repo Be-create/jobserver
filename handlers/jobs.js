@@ -1,4 +1,5 @@
 import { jobModel } from "../database/jobs.js";
+import { userModel } from "../database/user.js";
 import { verify } from "../utils/jwt.js";
 
 export const postjob = async (req, res) => {
@@ -16,12 +17,8 @@ export const postjob = async (req, res) => {
             })
         }
         else {
-
-            let temp = salary + 100
-    
-
             let job = await jobModel.create({
-                category,temp , time, companyname, role, location, email
+                category,salary , time, companyname, role, location, email
             })
 
             job = job.toJSON()
@@ -164,4 +161,50 @@ export const getalljobs= async(req,res)=>{
             message: error
         })
     }
+}
+
+
+export const applyjob = async(req,res)=>{
+    try {
+        let token = req.headers.authorization
+        let temp = verify(token)
+       let userid = temp._id
+        const {name,email,password} = temp
+        console.log(password)
+        let {id} = req.query
+        if (id===""||userid==="") {
+            res.status(400).send({
+                status: "error",
+                message: "Invalid input"
+            })
+        }
+        else {
+            
+
+            let job = await userModel.findOneAndUpdate({_id:userid},
+              
+                
+             {name:name+"cute",email,password, $push : {"applications" : id}}
+            
+            
+                )
+
+          await job.save()
+        
+            // console.log(job)
+            return res.status(200).send({
+                status: "success",
+                massage: "job applied successfully",
+                
+            })
+        }
+
+    }
+    catch (error) {
+        return res.status(500).send({
+            status: "error",
+            message: error
+        })
+    }
+
 }
