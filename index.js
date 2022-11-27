@@ -1,6 +1,6 @@
 import express from "express"
 import { connectdatabase } from "./database/index.js"
-import authRouter from "./routes/auth.js"
+import Router from "./routes/auth.js"
 import cors from "cors"
 
 let app = express()
@@ -11,7 +11,7 @@ res.send("server started")
 })
 
 
-app.use(authRouter)
+app.use(Router)
 const port = process.env.PORT ||8080
 
 app.listen(port,async(req,res)=>{

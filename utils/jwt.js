@@ -12,11 +12,9 @@ export const sign = (payload)=>{
 }
 
 export const verify = (token)=>{
-try {
+
  return    jwt.verify(token,SECRET)
-} catch (error) {
-    console.log("Error verifying")
-}
+
 }
 
 export const decode =(token)=>{
